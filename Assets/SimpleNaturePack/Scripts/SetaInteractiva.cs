@@ -19,7 +19,7 @@ public class SetaInteractiva : MonoBehaviour
         if (jugadorCerca && Input.GetKeyDown(KeyCode.E))
         {
             anim.SetTrigger("eat");
-            Destroy(gameObject, 3.5f);
+            Destroy(gameObject, 2.5f);
         }
     }
 }
