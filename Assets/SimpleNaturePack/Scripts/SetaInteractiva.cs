@@ -19,7 +19,7 @@ public class SetaInteractiva : MonoBehaviour
             jugadorCerca = true;
             anim = other.GetComponent<Animator>();
 
-           
+
         }
     }
 
@@ -34,7 +34,7 @@ public class SetaInteractiva : MonoBehaviour
 
     void Update()
     {
-        // Añadimos !yaComida para que no puedas spamear la E
+        // Añadimos !yaComida para que no  spamear la E
         if (jugadorCerca && !yaComida && Input.GetKeyDown(KeyCode.E))
         {
             yaComida = true; // Bloqueamos la seta para que no se coma 2 veces

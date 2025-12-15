@@ -9059,6 +9059,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4385080170327957909, guid: ff62b58c5a9ea164fa8ddf8038e10cd1, type: 3}
   m_PrefabInstance: {fileID: 813386531}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &819335418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 819335420}
+  - component: {fileID: 819335419}
+  m_Layer: 0
+  m_Name: World Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &819335419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819335418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a34bbd8e8c9c22f44a7c6096fcd111a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worldState: 0
+--- !u!4 &819335420
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819335418}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.835996, y: 3.0366435, z: -1.4080913}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &838198544
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19001,9 +19046,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e1be9dfc9c9ecbc448a6095ea62837c2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1860516616}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e1be9dfc9c9ecbc448a6095ea62837c2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1860516617}
   m_SourcePrefab: {fileID: 100100000, guid: e1be9dfc9c9ecbc448a6095ea62837c2, type: 3}
 --- !u!1 &1860516611 stripped
 GameObject:
@@ -19086,19 +19128,6 @@ MonoBehaviour:
   velocidadRotacion: 250
   x: 0
   y: 0
---- !u!114 &1860516617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1860516611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8a5b3cf3bf0d654f9b828ebaf3e397a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentState: 0
 --- !u!1001 &1886704963
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21137,6 +21166,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Seta Roja
       objectReference: {fileID: 0}
+    - target: {fileID: 7536155860608636735, guid: 2351a50c51ad81647bebda0209f5ef14, type: 3}
+      propertyPath: effectValue
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21154,3 +21187,4 @@ SceneRoots:
   - {fileID: 315136621}
   - {fileID: 331031347}
   - {fileID: 1860516610}
+  - {fileID: 819335420}
