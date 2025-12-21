@@ -28,5 +28,16 @@ public class WorldStateManager : MonoBehaviour
 
         OnWorldStateChanged?.Invoke(worldState);
     }
+    
+    //Comprovacion de cambio de estado sin necesidad de comer setas (temporal)
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+            ModifyWorldState(-1f);
+
+        if (Input.GetKeyDown(KeyCode.X))
+            ModifyWorldState(1f);
+    }
+
 }
 
