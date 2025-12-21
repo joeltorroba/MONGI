@@ -2345,7 +2345,7 @@ Skybox:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 110356701}
   m_Enabled: 1
-  m_CustomSkybox: {fileID: 2100000, guid: d2731a7950e5cd84bbdb7c10052d90e6, type: 2}
+  m_CustomSkybox: {fileID: 0}
 --- !u!4 &110356703
 Transform:
   m_ObjectHideFlags: 0
@@ -4723,9 +4723,9 @@ MonoBehaviour:
   positiveParticles: {fileID: 1904766575}
   skyboxPinkBlue: {fileID: 2100000, guid: d2731a7950e5cd84bbdb7c10052d90e6, type: 2}
   starsObject: {fileID: 521537983}
-  directionalLight: {fileID: 0}
-  utopiaLightIntensity: 1.4
-  utopiaAmbientIntensity: 1.3
+  directionalLight: {fileID: 315136620}
+  utopiaLightIntensity: 3
+  utopiaAmbientIntensity: 2
   utopiaAmbientColor: {r: 0.8, g: 0.7, b: 0.9, a: 1}
 --- !u!1001 &191573551
 PrefabInstance:
@@ -22141,10 +22141,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   negativeParticles: {fileID: 2078841881}
   skyboxGrayRed: {fileID: 2100000, guid: 0d99d5b24da75bf44b7e6f141741bbc5, type: 2}
-  starsObject: {fileID: 0}
+  starsObject: {fileID: 1161581352}
   directionalLight: {fileID: 0}
-  dystopiaLightIntensity: 0.5
-  dystopiaAmbientIntensity: 0.2
+  dystopiaLightIntensity: 2.87
+  dystopiaAmbientIntensity: 2
   dystopiaAmbientColor: {r: 0.2, g: 0.1, b: 0.1, a: 1}
 --- !u!1001 &1112911161
 PrefabInstance:
