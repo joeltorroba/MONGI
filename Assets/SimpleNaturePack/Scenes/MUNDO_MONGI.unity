@@ -14,8 +14,8 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
   m_LinearFogStart: 0
@@ -3649,7 +3649,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4661435515762813124, guid: e289bf5debb17f6459818c207d781953, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.257
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 4661435515762813124, guid: e289bf5debb17f6459818c207d781953, type: 3}
       propertyPath: m_LocalPosition.z
@@ -37327,7 +37327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scriptDeMovimiento: {fileID: 1860516616}
   animadorJugador: {fileID: 1860516618}
-  velocidadRapida: 3
+  velocidadRapida: 4
   velocidadAnimacionRapida: 1.25
   velocidadLenta: 1
   velocidadAnimacionLenta: 0.75
@@ -42905,6 +42905,56 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1279437348525638701, guid: e2e682b966e3f644392ffbfab511e0e2, type: 3}
   m_PrefabInstance: {fileID: 1962242001}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1969216505
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1969216507}
+  - component: {fileID: 1969216506}
+  m_Layer: 0
+  m_Name: ManagerNiebla
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1969216506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969216505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1d39017c47ea78449a00ccff2895953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorNeutro: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  densidadNeutra: 0.02
+  colorRojo: {r: 0.3, g: 0, b: 0, a: 1}
+  densidadRoja: 0.08
+  colorAzul: {r: 0.08131714, g: 0.78810215, b: 0.9169811, a: 1}
+  densidadAzul: 0.005
+--- !u!4 &1969216507
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969216505}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.183702, y: -2.5046992, z: -3.4304113}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1972291823
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50971,3 +51021,4 @@ SceneRoots:
   - {fileID: 343102171}
   - {fileID: 2014354766}
   - {fileID: 110356703}
+  - {fileID: 1969216507}
