@@ -12,6 +12,9 @@ public class SetaInteractiva : MonoBehaviour
     private Animator anim;
     private bool yaComida = false;
 
+    [Header("UI")]
+    public GameObject textoInteractuar;
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !yaComida) // Añadimos !yaComida
@@ -19,7 +22,8 @@ public class SetaInteractiva : MonoBehaviour
             jugadorCerca = true;
             anim = other.GetComponent<Animator>();
 
-
+            if (textoInteractuar != null)
+                textoInteractuar.SetActive(true);  //para el texto 
         }
     }
 
@@ -28,6 +32,9 @@ public class SetaInteractiva : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             jugadorCerca = false;
+
+            if (textoInteractuar != null)
+                textoInteractuar.SetActive(false); // para el texto
         }
     }
 
@@ -38,6 +45,9 @@ public class SetaInteractiva : MonoBehaviour
         if (jugadorCerca && !yaComida && Input.GetKeyDown(KeyCode.E))
         {
             yaComida = true; // Bloqueamos la seta para que no se coma 2 veces
+
+            if (textoInteractuar != null)
+                textoInteractuar.SetActive(false);// para el texto
 
             // --- EFECTO GLOBAL ---
             if (WorldStateManager.Instance != null)
