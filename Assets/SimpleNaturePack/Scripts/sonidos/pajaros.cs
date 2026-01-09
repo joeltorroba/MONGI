@@ -36,7 +36,7 @@ public class PositiveWorldAudio : MonoBehaviour
 
     private void HandleWorldState(float state)
     {
-        // Solo reaccionamos a valores positivos
+
         if (state <= 0f)
         {
             birdsAudio.volume = 0f;
