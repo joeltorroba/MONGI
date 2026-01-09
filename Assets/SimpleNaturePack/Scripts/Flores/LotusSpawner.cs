@@ -30,7 +30,7 @@ public class LotusSpawner : MonoBehaviour
     {
         int spawnLevel = 0;
 
-        if (newState >= 9)
+        if (newState <= -9)
             spawnLevel = 1;
         else
             spawnLevel = 0; //Aquí deben desaparecer
