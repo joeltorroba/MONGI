@@ -5,8 +5,8 @@ public class PositiveWorldAudio : MonoBehaviour
     public AudioSource birdsAudio;
 
     [Header("Escalado directo")]
-    public float maxWorldValue = 10f; 
-    public float maxVolume = 1f;      
+    public float maxWorldValue = 10f;
+    public float maxVolume = 1f;
 
     private void Start()
     {
@@ -42,6 +42,7 @@ public class PositiveWorldAudio : MonoBehaviour
             birdsAudio.volume = 0f;
             return;
         }
+
 
         float volume = (state / maxWorldValue) * maxVolume;
 
