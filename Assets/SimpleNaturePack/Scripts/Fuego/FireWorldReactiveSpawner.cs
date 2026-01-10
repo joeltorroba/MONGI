@@ -4,89 +4,105 @@ using UnityEngine;
 
 public class FireWorldReactiveSpawner : MonoBehaviour
 {
+    [Header("Asigna el manager si quieres (si no, lo busca solo)")]
+    public WorldStateManager world;
+
     [Header("Prefab y puntos de spawn")]
     public GameObject firePrefab;
     public Transform[] spots;
 
-    [Header("Regla de aparición (distopía)")]
-    [Tooltip("A partir de qué worldState empieza a aparecer fuego (ej: 1 o 2).")]
-    public float startAtWorldState = 2f;
-
-    [Tooltip("Cuántos fuegos por cada 1 punto de worldState por encima del start.")]
-    public int firesPerPoint = 1;
-
-    [Tooltip("Máximo de fuegos activos.")]
+    [Header("Distopía (negativo)")]
+    public float startAtWorldState = -2f;
+    public float fullAtWorldState = -10f;
     public int maxFires = 15;
 
-    [Header("Aparición gradual")]
+    [Header("Gradual")]
     public float spawnInterval = 0.25f;
-
-    [Header("Opcional")]
-    [Tooltip("Si está activo, el fuego solo crece (no se apaga si el mundo mejora).")]
-    public bool onlyGrow = true;
+    public float removeInterval = 0.25f;
 
     private GameObject[] spawned;
     private bool[] used;
     private int currentFires = 0;
-    private Coroutine spawnRoutine;
 
-    private void Awake()
+    private Coroutine spawnRoutine;
+    private Coroutine removeRoutine;
+
+    void Awake()
     {
         spawned = new GameObject[spots.Length];
         used = new bool[spots.Length];
     }
 
-    private void OnEnable()
+    void OnEnable()
     {
-        if (WorldStateManager.Instance != null)
-            WorldStateManager.Instance.OnWorldStateChanged += OnWorldStateChanged;
+        TrySubscribe(); // por si ya existe el manager
     }
 
-    private void Start()
+    void Start()
     {
-        // Inicializa según el estado actual al arrancar
-        if (WorldStateManager.Instance != null)
-            OnWorldStateChanged(WorldStateManager.Instance.worldState);
+        TrySubscribe(); // <-- CLAVE: aquí casi siempre ya existe el Instance
+        if (world != null)
+            OnWorldStateChanged(world.worldState); // sincroniza al arrancar
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
-        if (WorldStateManager.Instance != null)
-            WorldStateManager.Instance.OnWorldStateChanged -= OnWorldStateChanged;
+        if (world != null)
+            world.OnWorldStateChanged -= OnWorldStateChanged;
     }
 
-    private void OnWorldStateChanged(float ws)
+    void TrySubscribe()
     {
-        // Asumimos: distopía = ws positivo (seta mala suma)
-        // Si en tu proyecto es al revés, te digo abajo cómo invertirlo.
+        if (world == null) world = WorldStateManager.Instance;
+        if (world == null) world = FindFirstObjectByType<WorldStateManager>();
 
+        if (world == null)
+        {
+            StartCoroutine(RetrySubscribeNextFrame());
+            return;
+        }
+
+        // evita doble suscripción
+        world.OnWorldStateChanged -= OnWorldStateChanged;
+        world.OnWorldStateChanged += OnWorldStateChanged;
+
+        
+    }
+    private IEnumerator RetrySubscribeNextFrame()
+    {
+        yield return null; // espera 1 frame
+        TrySubscribe();
+    }
+
+    void OnWorldStateChanged(float ws)
+    {
         int target = CalculateTargetFires(ws);
-
-        if (onlyGrow) target = Mathf.Max(target, currentFires);
+        
 
         if (target > currentFires)
         {
+            if (removeRoutine != null) StopCoroutine(removeRoutine);
             if (spawnRoutine != null) StopCoroutine(spawnRoutine);
             spawnRoutine = StartCoroutine(SpawnUntil(target));
         }
-        else if (!onlyGrow && target < currentFires)
+        else if (target < currentFires)
         {
-            RemoveUntil(target);
+            if (spawnRoutine != null) StopCoroutine(spawnRoutine);
+            if (removeRoutine != null) StopCoroutine(removeRoutine);
+            removeRoutine = StartCoroutine(RemoveUntil(target));
         }
     }
 
-    private int CalculateTargetFires(float ws)
+    int CalculateTargetFires(float ws)
     {
-        if (ws <= startAtWorldState) return 0;
+        float t = Mathf.InverseLerp(startAtWorldState, fullAtWorldState, ws);
+        t = Mathf.Clamp01(t);
 
-        float above = ws - startAtWorldState; // ej ws=3, start=2 => above=1
-        int target = Mathf.FloorToInt(above * firesPerPoint);
-
-        target = Mathf.Clamp(target, 0, Mathf.Min(maxFires, spots.Length));
-        return target;
+        int limit = Mathf.Min(maxFires, spots.Length);
+        return Mathf.RoundToInt(t * limit);
     }
 
-    private IEnumerator SpawnUntil(int target)
+    IEnumerator SpawnUntil(int target)
     {
         while (currentFires < target)
         {
@@ -96,39 +112,59 @@ public class FireWorldReactiveSpawner : MonoBehaviour
         spawnRoutine = null;
     }
 
-    private void SpawnOne()
+    void SpawnOne()
     {
         int idx = GetRandomUnusedSpot();
         if (idx == -1) return;
 
-        GameObject fire = Instantiate(firePrefab, spots[idx].position, spots[idx].rotation);
+        var fire = Instantiate(firePrefab, spots[idx].position, spots[idx].rotation);
         spawned[idx] = fire;
         used[idx] = true;
         currentFires++;
+
+        var fader = fire.GetComponent<FireFader>();
+        if (fader != null) fader.PlayFadeIn();
     }
 
-    private int GetRandomUnusedSpot()
+    IEnumerator RemoveUntil(int target)
     {
-        List<int> candidates = new List<int>();
-        for (int i = 0; i < used.Length; i++)
-            if (!used[i]) candidates.Add(i);
-
-        if (candidates.Count == 0) return -1;
-        return candidates[Random.Range(0, candidates.Count)];
-    }
-
-    private void RemoveUntil(int target)
-    {
-        for (int i = used.Length - 1; i >= 0 && currentFires > target; i--)
+        while (currentFires > target)
         {
-            if (used[i])
-            {
-                if (spawned[i] != null) Destroy(spawned[i]);
-                spawned[i] = null;
-                used[i] = false;
-                currentFires--;
-            }
+            RemoveOne();
+            yield return new WaitForSeconds(removeInterval);
+        }
+        removeRoutine = null;
+    }
+
+    void RemoveOne()
+    {
+        int idx = GetRandomUsedSpot();
+        if (idx == -1) return;
+
+        var fire = spawned[idx];
+        spawned[idx] = null;
+        used[idx] = false;
+        currentFires--;
+
+        if (fire != null)
+        {
+            var fader = fire.GetComponent<FireFader>();
+            if (fader != null) fader.PlayFadeOutAndDestroy();
+            else Destroy(fire);
         }
     }
-}
 
+    int GetRandomUnusedSpot()
+    {
+        List<int> c = new List<int>();
+        for (int i = 0; i < used.Length; i++) if (!used[i]) c.Add(i);
+        return c.Count == 0 ? -1 : c[Random.Range(0, c.Count)];
+    }
+
+    int GetRandomUsedSpot()
+    {
+        List<int> c = new List<int>();
+        for (int i = 0; i < used.Length; i++) if (used[i]) c.Add(i);
+        return c.Count == 0 ? -1 : c[Random.Range(0, c.Count)];
+    }
+}

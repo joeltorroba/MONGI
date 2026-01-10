@@ -451,7 +451,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 932683494}
-  - component: {fileID: 932683493}
+  - component: {fileID: 932683495}
   m_Layer: 0
   m_Name: FireSystem
   m_TagString: Untagged
@@ -459,28 +459,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &932683493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 932683492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f2e44a8ef7ba35479875d5f2e4e561b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firePrefab: {fileID: 1388847578220527412, guid: b516baf5f5ec5dc43b2328c260690057, type: 3}
-  spots:
-  - {fileID: 1721767448}
-  - {fileID: 907098024}
-  - {fileID: 561720727}
-  startAtWorldState: 2
-  firesPerPoint: 1
-  maxFires: 15
-  spawnInterval: 0.25
-  onlyGrow: 1
 --- !u!4 &932683494
 Transform:
   m_ObjectHideFlags: 0
@@ -496,6 +474,40 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &932683495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932683492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f2e44a8ef7ba35479875d5f2e4e561b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  world: {fileID: 0}
+  firePrefab: {fileID: 1388847578220527412, guid: b516baf5f5ec5dc43b2328c260690057, type: 3}
+  spots:
+  - {fileID: 1721767448}
+  - {fileID: 1959853105}
+  - {fileID: 907098024}
+  - {fileID: 1464919605}
+  - {fileID: 561720727}
+  - {fileID: 589728638}
+  - {fileID: 1672923422}
+  - {fileID: 1769560926}
+  - {fileID: 920148807}
+  - {fileID: 1176555033}
+  - {fileID: 701784614}
+  - {fileID: 582985769}
+  - {fileID: 1466236320}
+  - {fileID: 1070205478}
+  startAtWorldState: -2
+  fullAtWorldState: -10
+  maxFires: 15
+  spawnInterval: 0.25
+  removeInterval: 0.25
 --- !u!1 &1070205477
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,6 +632,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 358762384}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1598472868 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1388847578220527412, guid: b516baf5f5ec5dc43b2328c260690057, type: 3}
+  m_PrefabInstance: {fileID: 2158873956024365756}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1598472870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598472868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb34f47f4942274ca73147eab35dc29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ps: {fileID: 7813268967531501304, guid: ff17abb01e714f3488d5fec2c808c625, type: 3}
+  fireLight: {fileID: 0}
+  fadeInTime: 0.6
+  fadeOutTime: 0.8
+  targetEmissionRate: 40
+  targetLightIntensity: 2
+  destroyDelay: 1.2
 --- !u!1 &1672923421
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,7 +835,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1388847578220527412, guid: b516baf5f5ec5dc43b2328c260690057, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1598472870}
   m_SourcePrefab: {fileID: 100100000, guid: b516baf5f5ec5dc43b2328c260690057, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
