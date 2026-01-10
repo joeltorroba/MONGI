@@ -3,49 +3,41 @@ using UnityEngine;
 public class PositiveWorldAudio : MonoBehaviour
 {
     public AudioSource birdsAudio;
-
-    [Header("Escalado directo")]
     public float maxWorldValue = 10f;
     public float maxVolume = 1f;
 
     private void Start()
     {
-        if (birdsAudio == null)
-            return;
-
-        birdsAudio.loop = true;
-        birdsAudio.playOnAwake = false;
-        birdsAudio.volume = 0f;
-        birdsAudio.Play();
-    }
-
-    private void OnEnable()
-    {
-        if (WorldStateManager.Instance != null)
+        if (birdsAudio == null) birdsAudio = GetComponent<AudioSource>();
+        if (birdsAudio != null)
         {
-            WorldStateManager.Instance.OnWorldStateChanged += HandleWorldState;
-            HandleWorldState(WorldStateManager.Instance.worldState);
-        }
-    }
-
-    private void OnDisable()
-    {
-        if (WorldStateManager.Instance != null)
-            WorldStateManager.Instance.OnWorldStateChanged -= HandleWorldState;
-    }
-
-    private void HandleWorldState(float state)
-    {
-
-        if (state <= 0f)
-        {
+            birdsAudio.loop = true;
+            birdsAudio.Play();
             birdsAudio.volume = 0f;
-            return;
         }
+    }
 
+    private void Update()
+    {
+        // El "vigilante": mira el estado 60 veces por segundo
+        if (WorldStateManager.Instance != null && birdsAudio != null)
+        {
+            float estadoActual = WorldStateManager.Instance.worldState;
 
-        float volume = (state / maxWorldValue) * maxVolume;
+            // Si el mundo es positivo (Azul)
+            if (estadoActual > 0)
+            {
+                float volume = (estadoActual / maxWorldValue) * maxVolume;
+                birdsAudio.volume = Mathf.Clamp01(volume);
 
-        birdsAudio.volume = Mathf.Clamp01(volume);
+                // Si por algún error de Unity se para, lo despertamos
+                if (!birdsAudio.isPlaying) birdsAudio.Play();
+            }
+            else
+            {
+                // Si es 0 o negativo, los pájaros se callan
+                birdsAudio.volume = 0f;
+            }
+        }
     }
 }
