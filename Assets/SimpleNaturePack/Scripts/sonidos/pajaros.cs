@@ -30,7 +30,7 @@ public class PositiveWorldAudio : MonoBehaviour
                 float volume = (estadoActual / maxWorldValue) * maxVolume;
                 birdsAudio.volume = Mathf.Clamp01(volume);
 
-                // Si por algún error de Unity se para, lo despertamos
+                // Si hay algun error vuelve a darle play
                 if (!birdsAudio.isPlaying) birdsAudio.Play();
             }
             else
