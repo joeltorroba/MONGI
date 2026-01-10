@@ -6153,7 +6153,7 @@ Transform:
   m_GameObject: {fileID: 279258128}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.5487943, y: 0.52430254, z: -1.7586654}
+  m_LocalPosition: {x: 6.651, y: 0.52430254, z: -1.7586654}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18884,7 +18884,7 @@ Transform:
   m_GameObject: {fileID: 961036808}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.23, y: 0, z: 0}
+  m_LocalPosition: {x: 1.413, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18903,7 +18903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   birdsAudio: {fileID: 961036811}
-  maxWorldValue: 10
+  maxWorldValue: 0
   maxVolume: 1
 --- !u!82 &961036811
 AudioSource:
@@ -19085,7 +19085,7 @@ PrefabInstance:
     - target: {fileID: -3374793955736532755, guid: 5a589608e0cf49b43aff8a3081e20ecd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: bb45c1f92be4ff8478c89d998e9bf6a8, type: 2}
+      objectReference: {fileID: 2100000, guid: 991ccada870b59d469d85d85124f2e24, type: 2}
     - target: {fileID: 919132149155446097, guid: 5a589608e0cf49b43aff8a3081e20ecd, type: 3}
       propertyPath: m_Name
       value: lotus_unityR
