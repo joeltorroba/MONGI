@@ -37,7 +37,11 @@ public class SetaInteractiva : MonoBehaviour
                 textoInteractuar.SetActive(false); // para el texto
         }
     }
-
+    private void OnDisable()
+    {
+        if (textoInteractuar != null)
+            textoInteractuar.SetActive(false);
+    }
 
     void Update()
     {
