@@ -1,17 +1,17 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class NegativeWorldEffects : MonoBehaviour
 {
-    [Header("Partículas distópicas (<= -3)")]
+    [Header("PartÃ­culas distÃ³picas (<= -3)")]
     public ParticleSystem negativeParticles;
 
-    [Header("Cielo distópico (<= -7)")]
+    [Header("Cielo distÃ³pico (<= -7)")]
     public Material skyboxGrayRed;
 
     [Header("Estrellas apagadas (<= -10)")]
     public GameObject starsObject;
 
-    [Header("Iluminación Distopía")]
+    [Header("IluminaciÃ³n DistopÃ­a")]
     public Light directionalLight;
     public float dystopiaLightIntensity = 0.5f;
     public float dystopiaAmbientIntensity = 0.2f;
@@ -21,6 +21,7 @@ public class NegativeWorldEffects : MonoBehaviour
     private float defaultLightIntensity;
     private float defaultAmbientIntensity;
     private Color defaultAmbientColor;
+
 
     private void OnEnable()
     {
