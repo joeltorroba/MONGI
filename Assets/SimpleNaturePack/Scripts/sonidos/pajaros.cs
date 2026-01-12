@@ -19,23 +19,23 @@ public class PositiveWorldAudio : MonoBehaviour
 
     private void Update()
     {
-        // El "vigilante": mira el estado 60 veces por segundo
+
         if (WorldStateManager.Instance != null && birdsAudio != null)
         {
             float estadoActual = WorldStateManager.Instance.worldState;
 
-            // Si el mundo es positivo (Azul)
+
             if (estadoActual > 0)
             {
                 float volume = (estadoActual / maxWorldValue) * maxVolume;
                 birdsAudio.volume = Mathf.Clamp01(volume);
 
-                // Si hay algun error vuelve a darle play
+
                 if (!birdsAudio.isPlaying) birdsAudio.Play();
             }
             else
             {
-                // Si es 0 o negativo, los pájaros se callan
+
                 birdsAudio.volume = 0f;
             }
         }
