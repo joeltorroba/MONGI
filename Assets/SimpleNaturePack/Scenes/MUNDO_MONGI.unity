@@ -23807,6 +23807,7 @@ GameObject:
   - component: {fileID: 1136385241}
   - component: {fileID: 1136385244}
   - component: {fileID: 1136385245}
+  - component: {fileID: 1136385246}
   m_Layer: 0
   m_Name: Camera1
   m_TagString: MainCamera
@@ -23947,6 +23948,20 @@ MonoBehaviour:
   fovDistopia: 50
   fovNeutro: 60
   fovUtopia: 90
+--- !u!114 &1136385246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136385240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d28428ac0602b140ade8ff757bfe0c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intensidadMaxima: 0.008
+  rapidez: 20
 --- !u!1 &1140460144 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9069115365609291303, guid: 60f79905accf3b24fa0114b941f1aac0, type: 3}
