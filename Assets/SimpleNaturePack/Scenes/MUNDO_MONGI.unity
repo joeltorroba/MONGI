@@ -6170,6 +6170,10 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 233539431785331527, guid: 40fc029cf1c88f34a962a5c64e83d71d, type: 3}
+      propertyPath: textoInteractuar
+      value: 
+      objectReference: {fileID: 1108086543}
     - target: {fileID: 254920471526875778, guid: 40fc029cf1c88f34a962a5c64e83d71d, type: 3}
       propertyPath: m_Name
       value: Seta azul (2)
