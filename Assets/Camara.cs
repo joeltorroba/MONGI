@@ -7,6 +7,7 @@ public class Camara : MonoBehaviour
     public GameObject jugador;
     public float speed = 100;
     private float giroX = 0f;
+    public GameObject empty;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -21,7 +22,8 @@ public class Camara : MonoBehaviour
         giroX -= y;
         giroX = Mathf.Clamp(giroX, -90f, 90f);
 
-        transform.localRotation = Quaternion.Euler(giroX, 0, 0);
+        //transform.localRotation = Quaternion.Euler(giroX, 0, 0);
+        empty.transform.localRotation = Quaternion.Euler(giroX, 0, 0);
         jugador.transform.Rotate(Vector3.up * x);
 
 
